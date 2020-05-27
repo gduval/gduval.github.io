@@ -6,10 +6,20 @@
     <description>Recent content in tech on Grant Duval</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2020 17:15:30 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 18:13:17 -0700</lastBuildDate>
     
 	<atom:link href="https://gduval.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Awesome Prometheus Alerts</title>
+      <link>https://gduval.github.io/posts/test/</link>
+      <pubDate>Tue, 26 May 2020 18:13:17 -0700</pubDate>
+      
+      <guid>https://gduval.github.io/posts/test/</guid>
+      <description>👋 Awesome Prometheus Alerts   Most alerting rules are common to every Prometheus setup. We need a place to find them all. 🤘 🚨 📊
+ Collection available here: https://awesome-prometheus-alerts.grep.to</description>
+    </item>
     
     <item>
       <title>Tech</title>
