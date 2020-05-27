@@ -233,32 +233,12 @@
 <li><code>$ sudo mkdir -p /var/run/bucardo</code></li>
 </ul>
 <ol start="10">
-<li>Than install Bucardo</li>
+<li>Than install Bucardo and match the settings below</li>
 </ol>
 <ul>
 <li><code>$ sudo bucardo start</code></li>
 </ul>
 <pre><code>  Current connection settings:
-  1. Host:           &lt;none&gt;
-  2. Port:           5432
-  3. User:           postgres
-  4. Database:       bucardo
-  5. PID directory:  /var/run/bucardo
-  Enter a number to change it, P to proceed, or Q to quit: 1
-
-  Change the host to: 127.0.0.1
-
-  Changed host to: 127.0.0.1
-  Current connection settings:
-  1. Host:           127.0.0.1
-  2. Port:           5432
-  3. User:           postgres
-  4. Database:       bucardo
-  5. PID directory:  /var/run/bucardo
-  Enter a number to change it, P to proceed, or Q to quit: P
-
-  Failed to connect to database 'bucardo', will try 'postgres'
-  Current connection settings:
   1. Host:           127.0.0.1
   2. Port:           5432
   3. User:           postgres
@@ -278,7 +258,7 @@
   You may want to check over the configuration variables next, by running:
   bucardo show all
   Change any setting by using: bucardo set foo=bar
-</code></pre><p>#Setting up Bucardo Sync</p>
+</code></pre><h2 id="setting-up-bucardo-sync">Setting up Bucardo Sync<a href="#setting-up-bucardo-sync" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
 <ol>
 <li>Create target database</li>
 </ol>
