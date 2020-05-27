@@ -201,7 +201,9 @@
 <ol start="4">
 <li>Create the Bucardo database on the target server</li>
 </ol>
-<p><code>$ sudo apt-get install postgresql-plperl-12</code></p>
+<ul>
+<li><code>$ sudo apt-get install postgresql-plperl-12</code></li>
+</ul>
 <ol start="5">
 <li>
 <p>As a prerequisites, ALL tables in the replicated DB and tables need to have primary key. You will have to add them in or skip them entirely.</p>
@@ -210,59 +212,130 @@
 <p>Login to the source and target DB’s and create PL/Perl extension</p>
 </li>
 </ol>
-<p><code>postgres=# CREATE EXTENSION plperl;</code></p>
+<ul>
+<li><code>postgres=# CREATE EXTENSION plperl;</code></li>
+</ul>
 <ol start="7">
 <li>On the server running Bucardo, Create the PID directory for Bucardo</li>
 </ol>
-<p><code>$ sudo mkdir -p /var/run/bucardo</code></p>
+<ul>
+<li><code>$ sudo mkdir -p /var/run/bucardo</code></li>
+</ul>
 <ol start="8">
-<li>Now we are ready to install Bucardo</li>
+<li>On target postgres Modify pg_hba.conf with the following</li>
 </ol>
-<p><code>$ bucardo install</code></p>
-<p>`Current connection settings:</p>
-<ol>
-<li>Host:           <!-- raw HTML omitted --></li>
-<li>Port:           5432</li>
-<li>User:           postgres</li>
-<li>Database:       bucardo</li>
-<li>PID directory:  /var/run/bucardo
-Enter a number to change it, P to proceed, or Q to quit: 1</li>
-</ol>
-<p>Change the host to: 127.0.0.1</p>
-<p>Changed host to: 127.0.0.1
-Current connection settings:</p>
-<ol>
-<li>Host:           127.0.0.1</li>
-<li>Port:           5432</li>
-<li>User:           postgres</li>
-<li>Database:       bucardo</li>
-<li>PID directory:  /var/run/bucardo
-Enter a number to change it, P to proceed, or Q to quit: P</li>
-</ol>
-<p>Failed to connect to database &lsquo;bucardo&rsquo;, will try &lsquo;postgres&rsquo;
-Current connection settings:</p>
-<ol>
-<li>Host:           127.0.0.1</li>
-<li>Port:           5432</li>
-<li>User:           postgres</li>
-<li>Database:       postgres</li>
-<li>PID directory:  /var/run/bucardo
-Enter a number to change it, P to proceed, or Q to quit: P</li>
-</ol>
-<p>Postgres version is: 9.3
-Creating superuser &lsquo;bucardo&rsquo;
-Attempting to create and populate the bucardo database and schema
-Database creation is complete</p>
-<p>Updated configuration setting &ldquo;piddir&rdquo;
-Installation is now complete.
-If you see errors or need help, please email <a href="mailto:bucardo-general@bucardo.org">bucardo-general@bucardo.org</a></p>
-<p>You may want to check over the configuration variables next, by running:
-bucardo show all
-Change any setting by using: bucardo set foo=bar`</p>
-<ol start="9">
-<li>More to come</li>
-</ol>
+<pre><code class="language-host" data-lang="host">   host   &lt;DATABASE-NAME&gt;      &lt;DATABASE-ADMIN&gt;      &lt;server2-ip&gt;/32        md5
+   host        all             bucardo               &lt;server2-ip&gt;/32        md5```
 
+9. Create run directory
+
+ * `$ sudo mkdir -p /var/run/bucardo`
+
+10. Than install Bucardo
+
+Current connection settings:
+1. Host:           &lt;none&gt;
+2. Port:           5432
+3. User:           postgres
+4. Database:       bucardo
+5. PID directory:  /var/run/bucardo
+Enter a number to change it, P to proceed, or Q to quit: 1
+
+Change the host to: 127.0.0.1
+
+Changed host to: 127.0.0.1
+Current connection settings:
+1. Host:           127.0.0.1
+2. Port:           5432
+3. User:           postgres
+4. Database:       bucardo
+5. PID directory:  /var/run/bucardo
+Enter a number to change it, P to proceed, or Q to quit: P
+
+Failed to connect to database 'bucardo', will try 'postgres'
+Current connection settings:
+1. Host:           127.0.0.1
+2. Port:           5432
+3. User:           postgres
+4. Database:       postgres
+5. PID directory:  /var/run/bucardo
+Enter a number to change it, P to proceed, or Q to quit: P
+
+Postgres version is: 9.3
+Creating superuser 'bucardo'
+Attempting to create and populate the bucardo database and schema
+Database creation is complete
+
+Updated configuration setting &quot;piddir&quot;
+Installation is now complete.
+If you see errors or need help, please email bucardo-general@bucardo.org
+
+You may want to check over the configuration variables next, by running:
+bucardo show all
+Change any setting by using: bucardo set foo=bar
+
+
+#Setting up Bucardo Sync
+
+1. Create target database
+
+* `CREATE DATABASE &lt;target database&gt; OWNER &lt;target superuser&gt; ENCODING 'UTF-8' TEMPLATE template0 LC_COLLATE 'C' LC_CTYPE 'C';`
+
+2. Import database schema
+
+* `pg_dump -v -U postgres -h 10.16.14.143 -d &lt;source database&gt; --schema-only | psql &lt;target database&gt;`
+
+3. Verify schema import
+
+* `SELECT * FROM pg_catalog.pg_tables`
+
+4. Add db source
+
+* `bucardo -U postgres add db &lt;source_db_name&gt; dbname=&lt;source database&gt; host=&lt;host database address&gt; user=&lt;source database admin&gt; pass=&lt;source database admin password&gt;`
+
+5. Add db target
+
+* `bucardo -U postgres add db &lt;target_database_name&gt;  dbname=&lt;target database&gt; host=&lt;target database address&gt; user=&lt;target db admin&gt; pass=&lt;target db admin pass&gt;`
+
+6. Add relgroup source
+
+* `bucardo -U postgres add all tables db=&lt;source_db_name&gt; relgroup=&lt;source_db_name&gt;`
+
+7. Add relgroup target
+
+* `bucardo -U postgres add all sequences db=&lt;source_db_name&gt; relgroup=&lt;source_db_name&gt;`
+
+8. Add dbgroup
+
+* `bucardo -U postgres add dbgroup &lt;db_group_name&gt; &lt;source_db_name&gt;:source &lt;target_database_name&gt;:target`
+
+9. Add sync
+
+* `bucardo -U postgres add sync &lt;db_sync_name&gt; relgroup=&lt;source_db_name&gt; dbs=&lt;db_group_name&gt; autokick=0`
+
+10. validate sync
+
+* `bucardo -U postgres validate &lt;db_sync_name&gt;`
+
+11. PG DUMP data
+
+* `pg_dump -v -U &lt;source database admin&gt; -p 5432 -h  &lt;host database address&gt;  -d &lt;source_db_name&gt; --data-only --disable-triggers -N postgres | PGOPTIONS='-c session_replication_role=replica' psql -d &lt;target database&gt;`
+
+12. Kick off sync
+* `kick update syncbucardo -U postgres update sync w2m_sync autokick=1`
+
+13. Make log directory
+
+* `sudo mkdir -p /var/log/bucardo`
+
+14. Start Bucardo
+
+* `sudo bucardo -U postgres start`
+
+15. Check status
+
+* `sudo bucardo status all`
+</code></pre>
       </div></div>
 
   
