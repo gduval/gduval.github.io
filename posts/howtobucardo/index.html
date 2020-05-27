@@ -235,136 +235,139 @@
 <ol start="10">
 <li>Than install Bucardo</li>
 </ol>
-<p>Current connection settings:</p>
-<ol>
-<li>Host:           <!-- raw HTML omitted --></li>
-<li>Port:           5432</li>
-<li>User:           postgres</li>
-<li>Database:       bucardo</li>
-<li>PID directory:  /var/run/bucardo
-Enter a number to change it, P to proceed, or Q to quit: 1</li>
-</ol>
-<p>Change the host to: 127.0.0.1</p>
-<p>Changed host to: 127.0.0.1
-Current connection settings:</p>
-<ol>
-<li>Host:           127.0.0.1</li>
-<li>Port:           5432</li>
-<li>User:           postgres</li>
-<li>Database:       bucardo</li>
-<li>PID directory:  /var/run/bucardo
-Enter a number to change it, P to proceed, or Q to quit: P</li>
-</ol>
-<p>Failed to connect to database &lsquo;bucardo&rsquo;, will try &lsquo;postgres&rsquo;
-Current connection settings:</p>
-<ol>
-<li>Host:           127.0.0.1</li>
-<li>Port:           5432</li>
-<li>User:           postgres</li>
-<li>Database:       postgres</li>
-<li>PID directory:  /var/run/bucardo
-Enter a number to change it, P to proceed, or Q to quit: P</li>
-</ol>
-<p>Postgres version is: 9.3
-Creating superuser &lsquo;bucardo&rsquo;
-Attempting to create and populate the bucardo database and schema
-Database creation is complete</p>
-<p>Updated configuration setting &ldquo;piddir&rdquo;
-Installation is now complete.
-If you see errors or need help, please email <a href="mailto:bucardo-general@bucardo.org">bucardo-general@bucardo.org</a></p>
-<p>You may want to check over the configuration variables next, by running:
-bucardo show all
-Change any setting by using: bucardo set foo=bar</p>
-<p>#Setting up Bucardo Sync</p>
+<ul>
+<li><code>$ sudo bucardo start</code></li>
+</ul>
+<pre><code>  Current connection settings:
+  1. Host:           &lt;none&gt;
+  2. Port:           5432
+  3. User:           postgres
+  4. Database:       bucardo
+  5. PID directory:  /var/run/bucardo
+  Enter a number to change it, P to proceed, or Q to quit: 1
+
+  Change the host to: 127.0.0.1
+
+  Changed host to: 127.0.0.1
+  Current connection settings:
+  1. Host:           127.0.0.1
+  2. Port:           5432
+  3. User:           postgres
+  4. Database:       bucardo
+  5. PID directory:  /var/run/bucardo
+  Enter a number to change it, P to proceed, or Q to quit: P
+
+  Failed to connect to database 'bucardo', will try 'postgres'
+  Current connection settings:
+  1. Host:           127.0.0.1
+  2. Port:           5432
+  3. User:           postgres
+  4. Database:       postgres
+  5. PID directory:  /var/run/bucardo
+  Enter a number to change it, P to proceed, or Q to quit: P
+
+  Postgres version is: 9.3
+  Creating superuser 'bucardo'
+  Attempting to create and populate the bucardo database and schema
+  Database creation is complete
+
+  Updated configuration setting &quot;piddir&quot;
+  Installation is now complete.
+  If you see errors or need help, please email bucardo-general@bucardo.org
+
+  You may want to check over the configuration variables next, by running:
+  bucardo show all
+  Change any setting by using: bucardo set foo=bar
+</code></pre><p>#Setting up Bucardo Sync</p>
 <ol>
 <li>Create target database</li>
 </ol>
 <ul>
-<li><code>CREATE DATABASE &lt;target database&gt; OWNER &lt;target superuser&gt; ENCODING 'UTF-8' TEMPLATE template0 LC_COLLATE 'C' LC_CTYPE 'C';</code></li>
+<li><code>postgres=# CREATE DATABASE &lt;target database&gt; OWNER &lt;target superuser&gt; ENCODING 'UTF-8' TEMPLATE template0 LC_COLLATE 'C' LC_CTYPE 'C';</code></li>
 </ul>
 <ol start="2">
 <li>Import database schema</li>
 </ol>
 <ul>
-<li><code>pg_dump -v -U postgres -h 10.16.14.143 -d &lt;source database&gt; --schema-only | psql &lt;target database&gt;</code></li>
+<li><code>$ pg_dump -v -U postgres -h 10.16.14.143 -d &lt;source database&gt; --schema-only | psql &lt;target database&gt;</code></li>
 </ul>
 <ol start="3">
 <li>Verify schema import</li>
 </ol>
 <ul>
-<li><code>SELECT * FROM pg_catalog.pg_tables</code></li>
+<li><code>postgres=#  SELECT * FROM pg_catalog.pg_tables</code></li>
 </ul>
 <ol start="4">
 <li>Add db source</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres add db &lt;source_db_name&gt; dbname=&lt;source database&gt; host=&lt;host database address&gt; user=&lt;source database admin&gt; pass=&lt;source database admin password&gt;</code></li>
+<li><code>$ bucardo -U postgres add db &lt;source_db_name&gt; dbname=&lt;source database&gt; host=&lt;host database address&gt; user=&lt;source database admin&gt; pass=&lt;source database admin password&gt;</code></li>
 </ul>
 <ol start="5">
 <li>Add db target</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres add db &lt;target_database_name&gt;  dbname=&lt;target database&gt; host=&lt;target database address&gt; user=&lt;target db admin&gt; pass=&lt;target db admin pass&gt;</code></li>
+<li><code>$ bucardo -U postgres add db &lt;target_database_name&gt;  dbname=&lt;target database&gt; host=&lt;target database address&gt; user=&lt;target db admin&gt; pass=&lt;target db admin pass&gt;</code></li>
 </ul>
 <ol start="6">
 <li>Add relgroup source</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres add all tables db=&lt;source_db_name&gt; relgroup=&lt;source_db_name&gt;</code></li>
+<li><code>$ bucardo -U postgres add all tables db=&lt;source_db_name&gt; relgroup=&lt;source_db_name&gt;</code></li>
 </ul>
 <ol start="7">
 <li>Add relgroup target</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres add all sequences db=&lt;source_db_name&gt; relgroup=&lt;source_db_name&gt;</code></li>
+<li><code>$ bucardo -U postgres add all sequences db=&lt;source_db_name&gt; relgroup=&lt;source_db_name&gt;</code></li>
 </ul>
 <ol start="8">
 <li>Add dbgroup</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres add dbgroup &lt;db_group_name&gt; &lt;source_db_name&gt;:source &lt;target_database_name&gt;:target</code></li>
+<li><code>$ bucardo -U postgres add dbgroup &lt;db_group_name&gt; &lt;source_db_name&gt;:source &lt;target_database_name&gt;:target</code></li>
 </ul>
 <ol start="9">
 <li>Add sync</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres add sync &lt;db_sync_name&gt; relgroup=&lt;source_db_name&gt; dbs=&lt;db_group_name&gt; autokick=0</code></li>
+<li><code>$ bucardo -U postgres add sync &lt;db_sync_name&gt; relgroup=&lt;source_db_name&gt; dbs=&lt;db_group_name&gt; autokick=0</code></li>
 </ul>
 <ol start="10">
 <li>validate sync</li>
 </ol>
 <ul>
-<li><code>bucardo -U postgres validate &lt;db_sync_name&gt;</code></li>
+<li><code>$ bucardo -U postgres validate &lt;db_sync_name&gt;</code></li>
 </ul>
 <ol start="11">
 <li>PG DUMP data</li>
 </ol>
 <ul>
-<li><code>pg_dump -v -U &lt;source database admin&gt; -p 5432 -h  &lt;host database address&gt;  -d &lt;source_db_name&gt; --data-only --disable-triggers -N postgres | PGOPTIONS='-c session_replication_role=replica' psql -d &lt;target database&gt;</code></li>
+<li><code>$ pg_dump -v -U &lt;source database admin&gt; -p 5432 -h  &lt;host database address&gt;  -d &lt;source_db_name&gt; --data-only --disable-triggers -N postgres | PGOPTIONS='-c session_replication_role=replica' psql -d &lt;target database&gt;</code></li>
 </ul>
 <ol start="12">
 <li>Kick off sync</li>
 </ol>
 <ul>
-<li><code>kick update syncbucardo -U postgres update sync w2m_sync autokick=1</code></li>
+<li><code>$ kick update syncbucardo -U postgres update sync w2m_sync autokick=1</code></li>
 </ul>
 <ol start="13">
 <li>Make log directory</li>
 </ol>
 <ul>
-<li><code>sudo mkdir -p /var/log/bucardo</code></li>
+<li><code>$ sudo mkdir -p /var/log/bucardo</code></li>
 </ul>
 <ol start="14">
 <li>Start Bucardo</li>
 </ol>
 <ul>
-<li><code>sudo bucardo -U postgres start</code></li>
+<li><code>$ sudo bucardo -U postgres start</code></li>
 </ul>
 <ol start="15">
 <li>Check status</li>
 </ol>
 <ul>
-<li><code>sudo bucardo status all</code></li>
+<li><code>$ sudo bucardo status all</code></li>
 </ul>
 
       </div></div>
