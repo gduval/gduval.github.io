@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Grant Duval</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2020 18:13:17 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 21:18:04 -0700</lastBuildDate>
     
 	<atom:link href="https://gduval.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Music2work2</title>
+      <link>https://gduval.github.io/posts/music2work2/</link>
+      <pubDate>Tue, 26 May 2020 21:18:04 -0700</pubDate>
+      
+      <guid>https://gduval.github.io/posts/music2work2/</guid>
+      <description> Listen Here  </description>
+    </item>
     
     <item>
       <title>Awesome Prometheus Alerts</title>
