@@ -222,11 +222,15 @@
 <li><code>$ sudo mkdir -p /var/run/bucardo</code></li>
 </ul>
 <ol start="8">
-<li>On target postgres Modify pg_hba.conf with the following</li>
-</ol>
-<p><code>host        all             postgres              &lt;server2-ip&gt;/32        trust host   &lt;DATABASE-NAME&gt;      &lt;DATABASE-ADMIN&gt;      &lt;server2-ip&gt;/32        md5 host        all             bucardo               &lt;server2-ip&gt;/32        md5</code></p>
-<ol start="9">
-<li>Create run directory</li>
+<li>
+<p>On target postgres Modify pg_hba.conf with the following</p>
+<p>host        all             postgres              <!-- raw HTML omitted -->/32        trust
+host   <!-- raw HTML omitted -->      <!-- raw HTML omitted -->      <!-- raw HTML omitted -->/32        md5
+host        all             bucardo               <!-- raw HTML omitted -->/32        md5</p>
+</li>
+<li>
+<p>Create run directory</p>
+</li>
 </ol>
 <ul>
 <li><code>$ sudo mkdir -p /var/run/bucardo</code></li>
