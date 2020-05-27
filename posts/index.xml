@@ -6,10 +6,37 @@
     <description>Recent content in Posts on Grant Duval</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2020 17:09:55 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 17:16:02 -0700</lastBuildDate>
     
 	<atom:link href="gduval.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Food</title>
+      <link>gduval.github.io/posts/food/</link>
+      <pubDate>Tue, 26 May 2020 17:16:02 -0700</pubDate>
+      
+      <guid>gduval.github.io/posts/food/</guid>
+      <description>coming soon</description>
+    </item>
+    
+    <item>
+      <title>Tech</title>
+      <link>gduval.github.io/posts/tech/</link>
+      <pubDate>Tue, 26 May 2020 17:15:30 -0700</pubDate>
+      
+      <guid>gduval.github.io/posts/tech/</guid>
+      <description>coming soon</description>
+    </item>
+    
+    <item>
+      <title>Music</title>
+      <link>gduval.github.io/posts/music/</link>
+      <pubDate>Tue, 26 May 2020 17:15:24 -0700</pubDate>
+      
+      <guid>gduval.github.io/posts/music/</guid>
+      <description>coming soon</description>
+    </item>
     
     <item>
       <title>Hello</title>
