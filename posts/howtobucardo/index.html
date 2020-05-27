@@ -216,13 +216,15 @@
 <li><code>postgres=# CREATE EXTENSION plperl;</code></li>
 </ul>
 <ol start="7">
-<li>On the server running Bucardo, Create the PID directory for Bucardo</li>
-</ol>
+<li>
+<p>On the server running Bucardo, Create the PID directory for Bucardo</p>
 <ul>
 <li><code>$ sudo mkdir -p /var/run/bucardo</code></li>
 </ul>
-<ol start="8">
-<li>On target postgres Modify pg_hba.conf with the following</li>
+</li>
+<li>
+<p>On target postgres Modify pg_hba.conf with the following</p>
+</li>
 </ol>
 <pre><code class="language-host" data-lang="host">        host   &lt;DATABASE-NAME&gt;      &lt;DATABASE-ADMIN&gt;      &lt;server2-ip&gt;/32        md5
         host        all             bucardo               &lt;server2-ip&gt;/32        md5
