@@ -3,27 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://gduval.github.io/posts/andersonpaak/</loc>
+    <lastmod>2020-05-26T17:46:43-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gduval.github.io/</loc>
+    <lastmod>2020-05-26T17:46:43-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gduval.github.io/tags/music/</loc>
+    <lastmod>2020-05-26T17:46:43-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gduval.github.io/posts/</loc>
+    <lastmod>2020-05-26T17:46:43-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gduval.github.io/tags/</loc>
+    <lastmod>2020-05-26T17:46:43-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://gduval.github.io/posts/food/</loc>
     <lastmod>2020-05-26T17:16:02-07:00</lastmod>
   </url>
   
   <url>
     <loc>https://gduval.github.io/tags/food/</loc>
-    <lastmod>2020-05-26T17:16:02-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gduval.github.io/</loc>
-    <lastmod>2020-05-26T17:16:02-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gduval.github.io/posts/</loc>
-    <lastmod>2020-05-26T17:16:02-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gduval.github.io/tags/</loc>
     <lastmod>2020-05-26T17:16:02-07:00</lastmod>
   </url>
   
@@ -39,11 +49,6 @@
   
   <url>
     <loc>https://gduval.github.io/posts/music/</loc>
-    <lastmod>2020-05-26T17:15:24-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://gduval.github.io/tags/music/</loc>
     <lastmod>2020-05-26T17:15:24-07:00</lastmod>
   </url>
   
