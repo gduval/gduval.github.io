@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Grant Duval</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 May 2020 09:34:37 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jul 2020 16:05:10 -0700</lastBuildDate>
     
 	<atom:link href="https://gduval.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My Resume</title>
+      <link>https://gduval.github.io/posts/resume/</link>
+      <pubDate>Tue, 21 Jul 2020 16:05:10 -0700</pubDate>
+      
+      <guid>https://gduval.github.io/posts/resume/</guid>
+      <description>Grant Duval  1461 Ridge Way grantduval@gmail.com Los Angeles, CA 90026 415-928-9380
+ Education  2008-2011 BS, Business Administration - Information Systems Management; San Francisco State University  Work Highlights April 2018 - Present Platform Engineer:: Core Scientific
+ Proactively identifying ways to improve and make technology more reliable Operating and maintaining AWS and on-prem infrastructure. Working to automate the provisioning, configuration, scaling, and monitoring of our infrastructure Building CI/CD pipelines and DevOps tooling Plan for the growth of infrastructure  July 2014 - June 2017 IT Specialist:: Ripple</description>
+    </item>
     
     <item>
       <title>Bucardo for the PostgreSQL replication for migration win!</title>
